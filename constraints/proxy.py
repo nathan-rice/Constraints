@@ -1,8 +1,6 @@
-'''
-Created on Jan 18, 2012
-
-@author: Nathan
-'''
+"""
+proxy contains :class:`Symbol` and functions related to it.
+"""
 
 from decorator import decorator
 import operator
@@ -28,11 +26,19 @@ def copy_func(f, code=None, globals_=None, name=None, argdefs=None, closure=None
 
 @decorator
 def chainable(f, self, *args, **kwargs):
-    """Chainable functions return OperationProxy objects."""
+    """Chainable functions return Symbol objects."""
     return type(self)(f(self, *args, **kwargs), self)
 
 
 class Symbol(object):
+    """
+    A proxy object that can be used to generatively construct functions at
+    runtime.  Most operations performed on a Symbol will return another
+    Symbol, representing the state of the first Symbol after the operation.
+    
+    Notable exceptions to this include functions such as isinstance, and the
+    built-in type/functions, such as int, float, bool, etc.
+    """
 
     def __init__(self, f=None, parent=None):
         self._f = f

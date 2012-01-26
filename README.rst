@@ -10,7 +10,7 @@ construction of validation types.  Constraints also provides a special class
 for example::
 
    >>> from constraints.proxy import Symbol
-   >>> from constraints.types import Constraints
+   >>> from constraints.constraints import Constraints
    >>> X = Symbol()
    >>> SizeConstraint = Constraints(X * 2 + 1 >= 5)
    >>> ModuloConstraint = Constraints(X % 2 != 0, X != 3)

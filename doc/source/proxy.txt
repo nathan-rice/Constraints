@@ -1,0 +1,12 @@
+proxy - Symbol proxy object for constraint generation
+=====================================================
+
+.. automodule:: constraints.proxy
+    :members:
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

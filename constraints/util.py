@@ -1,8 +1,8 @@
-'''
-Created on Jan 17, 2012
-
-@author: Nathan
-'''
+"""
+util provides some simple wrappers for commonly used built-in functions that
+are frequently used in validation.  This module is likely to change in the
+future.
+"""
 
 import re
 
