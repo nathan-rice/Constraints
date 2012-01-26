@@ -32,7 +32,7 @@ def chainable(f, self, *args, **kwargs):
     return type(self)(f(self, *args, **kwargs), self)
 
 
-class SymbolicObject(object):
+class Symbol(object):
 
     def __init__(self, f=None, parent=None):
         self._f = f
@@ -44,7 +44,7 @@ class SymbolicObject(object):
 
     @f.setter
     def f(self, func):
-        if not isinstance(func, (types.FunctionType, SymbolicObject)):
+        if not isinstance(func, (types.FunctionType, Symbol)):
             self._f = lambda: func
         else:
             self._f = func
