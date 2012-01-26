@@ -3,10 +3,9 @@ Constraints - Sleek contract-style validation tools
 
 Constraints provides flexible validation tools for a variety of circumstances.
 All validation in constraints is done by type checking.  Constraints provides
-a special abstract base class (:class:`constraints.types.Constraints`) which
-facilitates on the fly construction of validation types.  Constraints also
-provides a special class (:class:`constraints.proxy.Symbol`) which can be used
-to generate natural, easy to read constraint expressions.
+a special abstract base class (Constraints) which facilitates on the fly
+construction of validation types.  Constraints also provides a special class
+(Symbol) which can be used to generate natural, easy to read constraint expressions.
 
 for example::
 
@@ -61,5 +60,30 @@ supported, and can be used either as context managers or function decorators::
    ...
    Traceback (most recent call last):
       ...
-   AssertionError: The value (1) did not meet the specified post-condition   
+   AssertionError: The value (1) did not meet the specified post-condition
+   >>> @x_pre
+   ... def foo(x):
+   ...    return x
+   ...
+   >>> foo(1)
+   Traceback (most recent call last):
+      ...
+   AssertionError: The value (1) did not meet the specified pre-condition
+   >>> @x_post
+   ... def foo(x):
+   ...    return x - 5
+   ...
+   >>> foo(6)   
+   Traceback (most recent call last):
+      ...
+   AssertionError: The value (1) did not meet the specified post-condition
+   
+Symbol objects are very flexible, and provide a nice
+way to specify your constraints without resorting to a domain specific language.
+Symbol objects are fairly simple;  whenever an operation is performed on them,
+they capture it and return a new Symbol object wrapping the operation so that
+it can be performed with concrete input at a later time.  There are exceptions
+to this, for example isinstance, which uses the metaclass method, and the type
+constructors (str, int, bool, etc) which throw an error if the correct type is
+not returned.
    

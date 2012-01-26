@@ -6,7 +6,7 @@ Created on Jan 18, 2012
 
 from sys import _getframe
 from abc import ABCMeta
-from proxy import SymbolicObject
+from proxy import Symbol
 from decorator import decorator
 from inspect import getcallargs
 
@@ -40,7 +40,7 @@ class Constraints(ABCMeta):
     def __instancecheck__(self, other):
         # We need to replace the placeholder object with other
         return all(
-            not isinstance(arg, SymbolicObject) and arg(other) or \
+            not isinstance(arg, Symbol) and arg(other) or \
             arg.__evaluate__(other) for arg in self.args
         )
 
